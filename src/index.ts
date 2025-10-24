@@ -1,8 +1,16 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import api from './routes'
+import { initDB } from './db'
+import type { Env, Variables } from './types'
 
-const app = new Hono()
+const app = new Hono<{ Bindings: Env; Variables: Variables }>()
+
+// Initialize DB middleware
+app.use('*', async (c, next) => {
+  c.set('db', initDB(c.env.TMP_DB))
+  await next()
+})
 
 // Enable CORS
 app.use('/*', cors({
@@ -28,9 +36,7 @@ app.use('/*', cors({
 
 app.get('/', (c) => {
   return c.text('Hello Hono!')
-})
-
-// Mount API routes
+})// Mount API routes
 app.route('/api', api)
 
 export default app

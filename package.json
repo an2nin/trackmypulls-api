@@ -4,7 +4,11 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate:local": "wrangler d1 execute trackmypulls-db --local --file=./drizzle/migrations/<migration-file>.sql",
+    "db:migrate:remote": "wrangler d1 execute trackmypulls-db --remote --file=./drizzle/migrations/<migration-file>.sql",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "drizzle-orm": "^0.44.7",

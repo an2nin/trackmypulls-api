@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "trackmypulls-api",
   "main": "src/index.ts",
-  "compatibility_date": "2025-10-23",
+  "compatibility_date": "2025-10-11",
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
@@ -23,9 +23,10 @@
   // ],
   "d1_databases": [
     {
-      "binding": "TRACKMYPULLS_DB",
+      "binding": "TMP_DB",
       "database_name": "trackmypulls-db",
-      "database_id": "cfb38a19-2d64-4070-8eb3-77cd78def48d"
+      "database_id": "cfb38a19-2d64-4070-8eb3-77cd78def48d",
+      "migrations_dir": "drizzle/migrations"
     }
   ]
   // "ai": {
